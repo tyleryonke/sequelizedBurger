@@ -8,18 +8,24 @@ var exphbs = require("express-handlebars");
 var app = express();
 var port = process.env.PORT || 8080;
 
-app.listen(port, function() {
-  console.log("App listening on PORT " + port);
-});
+var db = require("./models");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-
 app.set("view engine", "handlebars");
 
-app.use(express.static(__dirname + "/public"));
-
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(methodOverride("_method"));
 
+app.use(express.static(__dirname + "/public"));
+
 require("./controllers/burgers_controller.js")(app);
+
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(port, function() {
+    console.log("App listening on PORT " + port);
+  });
+});

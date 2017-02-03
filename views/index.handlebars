@@ -16,8 +16,9 @@
   {{#each burgers}}
     {{#unless this.devoured}}
       <div>
-        <form action="/update/{{id}}?_method=PUT" method="POST">
+        <form action="/devour/{{id}}?_method=PUT" method="POST">
           <button class="devourButton">Devour it!</button>
+          <input type="text" name="devouredBy" value="Who is devouring it?">
         </form>
       </div>
     {{/unless}}
@@ -28,7 +29,7 @@
   {{#each burgers}}
     {{#if this.devoured}}
     	<div class="burgerLine">
-    	   <span>{{id}}.  {{burger_name}}</span>
+    	   <span>{{id}}.  {{burger_name}} (Devoured by: {{devouredBy}})</span>
     	</div>
     {{/if}}
   {{/each}}

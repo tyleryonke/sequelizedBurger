@@ -1,7 +1,4 @@
-var express = require("express");
-var router = express.Router();
-
-var db = require("../models/burger.js");
+var db = require("../models");
 
 module.exports = function(app) {
 
@@ -9,7 +6,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     db.Burger.findAll({})
     .then(function(result) {
-      return res.json(result);
+      res.render("index", {burgers: result});
     });
 
   });
@@ -20,27 +17,28 @@ module.exports = function(app) {
     var burger = req.body;
 
     // Then add the character to the database using sequelize
-    db.Book.create({
-      burger_name: burger.name
+    db.Burger.create({
+      burger_name: burger.newBurger
     }).then(function(result) {
-      return res.json(result);
+      res.redirect("/");
     });
 
   });
 
   // Delete a book
-  app.put("/update/:id", function(req, res) {
+  app.put("/devour/:id", function(req, res) {
     // Add sequelize code to update a post to the values in req.body,
     // update the post where the id is equal to req.body.id.
     // Then return the result to the user with res.json
-    db.Post.update({
-      devoured: true
+    db.Burger.update({
+      devoured: true,
+      devouredBy: req.body.devouredBy
     }, {
       where: {
         id: req.params.id
       }
     }).then(function(result) {
-      return res.json(result);
+      res.redirect("/");
     });
   });
 
