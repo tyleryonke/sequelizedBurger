@@ -15,9 +15,9 @@
   },
   "production": {
     "username": "e36p6v13ipzsikk7",
-    "password": "pn44d5blm2o1hlry",
+    "password": "r4vhfyj3ywn5tubx",
     "database": "burger_sequel",
-    "host": "	ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "host": "ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
