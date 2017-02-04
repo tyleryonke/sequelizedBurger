@@ -16,7 +16,7 @@
   "production": {
     "username": "e36p6v13ipzsikk7",
     "password": "r4vhfyj3ywn5tubx",
-    "database": "burger_sequel",
+    "database": "twxlk9tq3uux1a22",
     "host": "ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
